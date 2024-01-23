@@ -13,7 +13,7 @@ const list = async (path = PATH) => {
             const fileStat = await stat(filePath);
             if(fileStat.isDirectory()){
                 await list(filePath);
-            } else {
+            } else if(fileStat.isFile()) {
                 console.log(file);
             }
         }
