@@ -8,7 +8,7 @@ const __filename = fileURLToPath(import.meta.url);
 const write = async () => {
     const PATH = join(dirname(__filename), 'files/fileToWrite.txt');
     const stream = createWriteStream(PATH);
-    stdin.pipe(stream);
+    await stdin.pipe(stream);
 };
 
 await write();
