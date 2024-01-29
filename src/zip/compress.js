@@ -2,6 +2,7 @@ import { fileURLToPath  } from 'node:url';
 import { dirname, join } from 'node:path';
 import { createWriteStream, createReadStream } from 'node:fs';
 import { createGzip } from 'node:zlib';
+import { pipeline } from 'node:stream/promises';
 
 const __filename = fileURLToPath(import.meta.url);
 
@@ -11,7 +12,7 @@ const compress = async () => {
     const streamRead = createReadStream(txtPath);
     const streamWrite = createWriteStream(gzPath);
     const compress = createGzip();
-    await streamRead.pipe(compress).pipe(streamWrite);
+    await pipeline(streamRead, compress, streamWrite);
 };
 
 await compress();
