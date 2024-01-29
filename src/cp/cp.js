@@ -13,5 +13,4 @@ const spawnChildProcess = async (args) => {
     stdin.on('data', (data) => cp.stdin.write(data));
 };
 
-// Put your arguments in function call to test this functionality
-spawnChildProcess( ['someArgument1', 'someArgument2']);
+await spawnChildProcess( ['someArgument1', 'someArgument2']);
